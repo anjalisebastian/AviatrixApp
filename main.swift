@@ -11,13 +11,13 @@ import Foundation
 func gauges(myPlane : Aviatrix) {
     print("Reading the gauges...")
     print(" ")
-//    print("| Running:  | ✅")
+    print("| Running:  | ✅")
     print("| Location:  | \(myPlane.location)")
-//    print("| Distance:  | \(myPlane.distanceTraveled) miles")
-//    print("| Fuel:      | \(myPlane.fuelLevel) gallons")
-//    print("| Max Fuel:  | \(myPlane.maxFuel) gallons")
-//    print("| MPG:       | \(myPlane.milesPerGallon)")
-//    print("| Fuel Bill: | \(myPlane.fuelCost)")
+    print("| Distance:  | \(myPlane.distanceTraveled) miles")
+    print("| Fuel:      | \(myPlane.fuelLevel) gallons")
+    print("| Max Fuel:  | \(myPlane.maxFuel) gallons")
+    print("| MPG:       | \(myPlane.milesPerGallon)")
+    print("| Fuel Bill: | \(myPlane.fuelCost)")
 }
 
 
@@ -36,15 +36,15 @@ func fly(myPlane : Aviatrix) {
     
     let response = Int(readLine()!)
     var desiredLocation = ""
-    
-    if response! >= 0 && response! < 4 {
+//    print("here")
+    if response! >= 0 && response! <= 4 {
         desiredLocation = myPlane.knownDestinations()[response!]
         myPlane.flyTo(destination : desiredLocation)
-        
+//        print("here2")
         print("🛫 Preparing for takeoff...")
         print("🛫 Flying...")
         
-        if fuelCheck(myPlane: myPlane, destination : desiredLocation) {
+        if fuelCheck(myPlane: myPlane, destination: desiredLocation) {
             myPlane.flyTo(destination: desiredLocation)
             print("🛬 You've arrived in \(plane.location)!")
             gauges(myPlane: myPlane)
@@ -60,8 +60,8 @@ func refuel(myPlane : Aviatrix) {
     let refuelData = myPlane.refuel()
     
     print("Refueling...")
-    print("⛽ Here in _________, jet fuel costs _________")
-    print("⛽ You refueled _________ gallons totaling _________")
+    print("⛽ Here in \(plane.location), jet fuel costs \(plane.price)")
+    print("⛽ You refueled \(plane.difference) gallons totaling \(plane.fuelCost)")
 }
 
 func fuelCheck(myPlane : Aviatrix, destination : String) -> Bool {
